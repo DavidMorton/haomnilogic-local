@@ -31,3 +31,5 @@ OMNI_TO_HASS_TYPES: dict[str, str] = {
     OmniType.VALVE_ACTUATOR: "switch",
     OmniType.VIRT_HEATER: "water_heater",
 }
+
+CONF_IP_ADDRESS: Final[str] = "192.168.86.25"
