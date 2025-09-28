@@ -153,7 +153,7 @@ class OmniLogicVSPFanEntity(OmniLogicEntity[T], FanEntity):
 
     #     self.set_telemetry({"state": self.data.telemetry.state, "speed": new_speed_pct})
 
-    async def async_set_percentage(self, percentage: int) -> None:
+    async def async_set_percentage(self, percentage: int = None) -> None:
         """Update the current value."""
         raise NotImplementedError
 
@@ -161,8 +161,11 @@ class OmniLogicVSPFanEntity(OmniLogicEntity[T], FanEntity):
 class OmniLogicPumpFanEntity(OmniLogicVSPFanEntity[EntityIndexPump]):
     """An entity representing a number platform for an OmniLogic Pump."""
 
-    async def async_set_percentage(self, percentage: float) -> None:
+    async def async_set_percentage(self, percentage: float = None) -> None:
         """Update the current value."""
+        if percentage is None:
+            percentage = self.native_value
+
         if self.native_unit_of_measurement == "RPM":
             new_speed_pct = round(percentage / self.native_max_value * 100)
         else:
@@ -176,8 +179,11 @@ class OmniLogicPumpFanEntity(OmniLogicVSPFanEntity[EntityIndexPump]):
 class OmniLogicFilterFanEntity(OmniLogicVSPFanEntity[EntityIndexFilter]):
     """An OmniLogicFilterNumberEntity is a special case of an OmniLogicPumpNumberEntity."""
 
-    async def async_set_percentage(self, percentage: float) -> None:
+    async def async_set_percentage(self, percentage: float = None) -> None:
         """Update the current value."""
+        if percentage is None:
+            percentage = self.native_value
+
         if self.native_unit_of_measurement == "RPM":
             new_speed_pct = round(percentage / self.native_max_value * 100)
         else:
