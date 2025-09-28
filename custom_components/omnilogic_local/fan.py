@@ -177,12 +177,12 @@ class OmniLogicPumpFanEntity(OmniLogicVSPFanEntity[EntityIndexPump]):
 
     async def turn_on(self, percentage, preset_mode, **kwargs) -> None:
         """Turn the entity on."""
-        await self.coordinator.omni_api.async_set_equipment(self.bow_id, self.system_id, self.native_max_value)
+        await self.async_set_percentage(self.native_max_value)
         self.set_telemetry({"state": PumpState.ON, "speed": self.native_max_value})
 
     async def async_turn_off(self, preset_mode, **kwargs) -> None:
         """Turn the entity off."""
-        await self.coordinator.omni_api.async_set_equipment(self.bow_id, self.system_id, 0)
+        await self.async_set_percentage(0)
         self.set_telemetry({"state": PumpState.OFF, "speed": 0})
 
 
@@ -205,10 +205,10 @@ class OmniLogicFilterFanEntity(OmniLogicVSPFanEntity[EntityIndexFilter]):
 
     async def turn_on(self, percentage, preset_mode, **kwargs) -> None:
         """Turn the entity on."""
-        await self.coordinator.omni_api.async_set_equipment(self.bow_id, self.system_id, self.native_max_value)
+        await self.async_set_percentage(percentage)
         self.set_telemetry({"state": PumpState.ON, "speed": self.native_max_value})
 
     async def async_turn_off(self, preset_mode, **kwargs) -> None:
         """Turn the entity off."""
-        await self.coordinator.omni_api.async_set_equipment(self.bow_id, self.system_id, 0)
+        await self.async_set_percentage(0)
         self.set_telemetry({"state": FilterState.OFF, "speed": 0})
