@@ -106,14 +106,14 @@ class OmniLogicVSPFanEntity(OmniLogicEntity[T], FanEntity):
     @property
     def native_max_value(self) -> float:
         if self.native_unit_of_measurement == "RPM":
-            return self.max_rpm
-        return self.max_pct
+            return self.max_speed
+        return self.max_speed_pct
 
     @property
     def native_min_value(self) -> float:
         if self.native_unit_of_measurement == "RPM":
-            return self.min_rpm
-        return self.min_pct
+            return self.min_speed
+        return self.min_speed_pct
 
     @property
     def native_value(self) -> int:
