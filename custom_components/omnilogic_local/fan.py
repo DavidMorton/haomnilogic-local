@@ -73,7 +73,7 @@ class OmniLogicVSPFanEntity(OmniLogicEntity[T], FanEntity):
 
     @property
     def name(self) -> Any:
-        return f"{super().name} Speed"
+        return f"{super().name} Fan"
 
     @property
     def max_speed(self) -> int:
