@@ -25,7 +25,7 @@ OMNI_TO_HASS_TYPES: dict[str, str] = {
     OmniType.FILTER: "switch",
     OmniType.HEATER: "water_heater",
     OmniType.HEATER_EQUIP: "water_heater",
-    OmniType.PUMP: "valve",
+    OmniType.PUMP: "fan",
     OmniType.RELAY: "switch",
     OmniType.SENSOR: "sensor",
     OmniType.VALVE_ACTUATOR: "switch",
