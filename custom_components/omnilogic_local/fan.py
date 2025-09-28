@@ -12,7 +12,7 @@ from pyomnilogic_local.omnitypes import (
     PumpType,
 )
 
-from homeassistant.components.fan import FanEntity
+from homeassistant.components.fan import FanEntity, FanEntityFeature
 
 from .const import DOMAIN, KEY_COORDINATOR
 from .entity import OmniLogicEntity
@@ -69,7 +69,9 @@ class OmniLogicVSPFanEntity(OmniLogicEntity[T], FanEntity):
 
     def __init__(self, coordinator: OmniLogicCoordinator, context: int) -> None:
         """Pass coordinator to CoordinatorEntity."""
-        super().__init__(coordinator, context)
+        _super = super()
+        _super.__init__(coordinator, context)
+        _super._attr_supported_features = FanEntityFeature.SET_SPEED | FanEntityFeature.TURN_OFF | FanEntityFeature.TURN_ON
 
     @property
     def name(self) -> Any:
