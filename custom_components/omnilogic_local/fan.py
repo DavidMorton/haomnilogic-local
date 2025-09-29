@@ -178,7 +178,7 @@ class OmniLogicPumpFanEntity(OmniLogicVSPFanEntity[EntityIndexPump]):
         await self.async_set_percentage(self.native_max_value)
         self.set_telemetry({"state": PumpState.ON, "speed": self.native_max_value})
 
-    async def async_turn_off(self, preset_mode, **kwargs) -> None:
+    async def async_turn_off(self, preset_mode=None, **kwargs) -> None:
         """Turn the entity off."""
         await self.async_set_percentage(0)
         self.set_telemetry({"state": PumpState.OFF, "speed": 0})
@@ -206,7 +206,7 @@ class OmniLogicFilterFanEntity(OmniLogicVSPFanEntity[EntityIndexFilter]):
         await self.async_set_percentage(percentage)
         self.set_telemetry({"state": PumpState.ON, "speed": self.native_max_value})
 
-    async def async_turn_off(self, preset_mode, **kwargs) -> None:
+    async def async_turn_off(self, preset_mode=None, **kwargs) -> None:
         """Turn the entity off."""
         await self.async_set_percentage(0)
         self.set_telemetry({"state": FilterState.OFF, "speed": 0})
