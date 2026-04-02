@@ -21,6 +21,7 @@ from .utils import get_entities_of_omni_types
 PLATFORMS: list[Platform] = [
     Platform.BINARY_SENSOR,
     Platform.BUTTON,
+    Platform.CLIMATE,
     Platform.LIGHT,
     Platform.NUMBER,
     Platform.SENSOR,
